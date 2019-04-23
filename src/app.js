@@ -1,5 +1,6 @@
 import express from "express";
 import setGeneraliddleware from "./middleware/generalMiddleware";
+import errorHandler from "./middleware/errorHandler";
 import verifyToken from "./middleware/verifyToken";
 
 const server = express();
@@ -22,7 +23,7 @@ server
   .post();
 
 server
-  .route("users:id")
+  .route("/users:id")
   .get()
   .put()
   .delete();
@@ -31,5 +32,7 @@ server
   .get()
   .put()
   .delete();
+
+server.use(errorHandler);
 
 export default server;
