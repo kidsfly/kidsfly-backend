@@ -5,8 +5,8 @@
   "main": "./src/server.js",
   "scripts": {
     "build": "babel src --out-dir dist",
-    "start": "nodemon --exec babel-node src/server.js ",
-    "serve": "node dist/server.js",
+    "dev": "nodemon --exec babel-node src/server.js ",
+    "start": "node dist/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
