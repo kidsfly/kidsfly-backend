@@ -26,9 +26,12 @@ server.use(verifyToken);
 //   .get()
 //   .post();
 
-server.route("/users/:id").get(user.get);
-// .put(user.put)
-// .delete(user.delete);
+server
+  .route("/users/:id")
+  .get(user.get)
+  .put(user.put)
+  .delete(user.deleteU);
+
 // server
 //   .route("/trips:id")
 //   .get()

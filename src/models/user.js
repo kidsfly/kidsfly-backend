@@ -27,10 +27,11 @@ export function createUser(user) {
   return db("user").insert(user);
 }
 
-export function updateUser(id, updatedUser) {
-  return db("user")
+export async function updateUser(id, updatedUser) {
+  await db("user")
     .where({ id })
     .update(updatedUser);
+  return db("user").where({ id });
 }
 
 export function deleteUser(id) {

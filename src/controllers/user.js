@@ -62,3 +62,27 @@ export const post = async (req, res, next) => {
     next(e);
   }
 };
+
+export const put = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const user = req.body;
+    const updatedUser = await updateUser(id, user);
+    console.log(updatedUser);
+    res.status(201).json({ token: `${createToken(updatedUser[0])}` });
+  } catch (e) {
+    e.statusCode = 400;
+    next(e);
+  }
+};
+
+export const deleteU = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const delUser = await deleteUser(id);
+    res.status(201).json(delUser);
+  } catch (e) {
+    e.statusCode = 400;
+    next(e);
+  }
+};
