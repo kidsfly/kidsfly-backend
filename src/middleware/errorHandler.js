@@ -5,14 +5,6 @@ export const errorHandler = (err, req, res, next) => {
         message: "The requested information could not be found"
       });
       break;
-    case 401:
-      err.message =
-        "Please connect your stripe account before processing payments!";
-      res.status(401).json({
-        message:
-          "Please connect your stripe account before processing payments!"
-      });
-      break;
     case 400:
       res.status(400).json({
         message:

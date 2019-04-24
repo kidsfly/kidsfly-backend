@@ -1,5 +1,9 @@
 import db from "../../data/dbConfig";
 
+export function findUserByLogin(email, password) {
+  return db("user").where({ email }, { password });
+}
+
 export function findUser(id) {
   return db("user")
     .first()
