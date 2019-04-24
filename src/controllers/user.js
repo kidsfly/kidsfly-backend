@@ -68,7 +68,6 @@ export const put = async (req, res, next) => {
     const { id } = req.params;
     const user = req.body;
     const updatedUser = await updateUser(id, user);
-    console.log(updatedUser);
     res.status(201).json({ token: `${createToken(updatedUser[0])}` });
   } catch (e) {
     e.statusCode = 400;

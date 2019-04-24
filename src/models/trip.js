@@ -12,8 +12,7 @@ export function deleteTrip(id) {
     .del();
 }
 
-export function updateTrip(updatedTrip) {
-  const id = updatedTrip.id;
+export function updateTrip(id, updatedTrip) {
   return db("trip")
     .where({ id })
     .update(updatedTrip);
@@ -21,6 +20,10 @@ export function updateTrip(updatedTrip) {
 
 export function findTripByUserId(id) {
   return db("trip").where({ user_id: id });
+}
+
+export function findTripById(id) {
+  return db("trip").where({ id });
 }
 
 export function findTripByAirport(airport) {

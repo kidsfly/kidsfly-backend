@@ -21,10 +21,10 @@ server
 //Auth required beyond this line
 server.use(verifyToken);
 
-// server
-//   .route("/trips")
-//   .get()
-//   .post();
+server
+  .route("/trips")
+  .get(trip.get)
+  .post(trip.post);
 
 server
   .route("/users/:id")
@@ -32,11 +32,11 @@ server
   .put(user.put)
   .delete(user.deleteU);
 
-// server
-//   .route("/trips:id")
-//   .get()
-//   .put()
-//   .delete();
+server
+  .route("/trips/:id")
+  .get(trip.get)
+  .put(trip.put)
+  .delete(trip.deleteT);
 
 // server.use(errorHandler);
 
