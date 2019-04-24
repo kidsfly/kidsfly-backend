@@ -13,25 +13,22 @@ server.get("/", (req, res) => res.send("Hello World!"));
 //login
 server.route("/login").get(login.login);
 
-// server
-//   .route("/users")
-//   .get(verifyToken)
-//   .post()
-//   .put(verifyToken)
-//   .delete(verifyToken);
+server
+  .route("/users")
+  .get(verifyToken, user.get)
+  .post(user.post);
+
 //Auth required beyond this line
-// server.use(verifyToken);
+server.use(verifyToken);
 
 // server
 //   .route("/trips")
 //   .get()
 //   .post();
 
-// server
-//   .route("/users:id")
-//   .get()
-//   .put()
-//   .delete();
+server.route("/users/:id").get(user.get);
+// .put(user.put)
+// .delete(user.delete);
 // server
 //   .route("/trips:id")
 //   .get()

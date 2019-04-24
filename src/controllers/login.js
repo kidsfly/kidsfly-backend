@@ -14,10 +14,13 @@ export const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
     const user = await findUserByLogin(email, password);
-    if (user === undefined) {
-      return res.status(404).json({ msg: "404: User cannot be found." });
+    if (user == false) {
+      return res
+        .status(404)
+        .json({ msg: "Please input a valid email and password." });
+    } else {
+      res.status(200).json({ token: `${createToken(user[0])}` });
     }
-    res.status(200).json({ token: `${createToken(user[0])}` });
   } catch (e) {
     e.statusCode = 400;
     next(e);

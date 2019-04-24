@@ -1,7 +1,16 @@
 import db from "../../data/dbConfig";
 
-export function findUserByLogin(email, password) {
-  return db("user").where({ email }, { password });
+export async function findUserByLogin(email, password) {
+  let res = await db("user").where({ email, password });
+  console.log(res);
+  if (res == false) {
+    res = false;
+  }
+  return res;
+}
+
+export function findUserByEmail(email) {
+  return db("user").where({ email });
 }
 
 export function findUser(id) {
@@ -15,7 +24,7 @@ export function findUsers() {
 }
 
 export function createUser(user) {
-  db("user").insert(user);
+  return db("user").insert(user);
 }
 
 export function updateUser(id, updatedUser) {
