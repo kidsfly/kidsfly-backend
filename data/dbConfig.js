@@ -4,11 +4,9 @@ const environment = process.env.NODE_ENV || "production";
 const db = knex(knexConfig[environment]);
 
 // uncomment to reset server on every reload
-if (process.env.NODE_ENV === "production") {
-  db.migrate
-    .rollback()
-    .then(() => db.migrate.latest())
-    .then(() => db.seed.run());
-}
+db.migrate
+  .rollback()
+  .then(() => db.migrate.latest())
+  .then(() => db.seed.run());
 
 module.exports = db;
