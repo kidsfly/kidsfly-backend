@@ -8,7 +8,7 @@ import * as login from "./controllers/login";
 const server = express();
 setGeneraliddleware(server);
 
-// server.get("/", (req, res) => res.send("Hello World!"));
+server.get("/", (req, res) => res.send("Hello World!"));
 
 //login
 server.route("/login").get(login.login);
