@@ -1,4 +1,5 @@
 import server from "./app";
+import "@babel/polyfill";
 
 const PORT = process.env.PORT || 12340;
 
