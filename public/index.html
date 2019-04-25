@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Labs 10 Lodgel - Backend Documentation</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+<!-- Primary Page Layout
+ –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <div class="container">
+        <div class="row">
+            <header class = "twelve column">
+                <h1><style="margin-top: 30px">Kids Fly</style></h1>
+                <p>This is the documentation for the Kids Fly project.</p>
+                <strong>Contents</strong>
+                <div class="lists">
+                    <ul class="list1">
+                            <li>
+                                <a href="#login">Login</a>
+                            </li>
+                            <li>
+                                <a href="#getuserdata">Get User Data</a>
+                            </li>
+                            <li>
+                                <a href="#getuserbyid">Get User by ID</a>
+                            </li>
+                            <li>
+                                <a href="#postnewuser">Post New User</a>
+                            </li>
+                            <li>
+                                <a href="#edituserbyID">Edit User by ID</a>
+                            </li>
+                            <li>
+                                <a href="#deleteuserbyID">Delete User by ID</a>
+                            </li>
+                            <li>
+                                <a href="#getlistoftrips">Get List of All Trips</a>
+                            </li>
+                            <li>
+                                <a href="#gettripbyID">Get Trip by ID</a>
+                            </li>
+                            <li>
+                                <a href="#postnewtrip">Post New Trip</a>
+                            </li>
+                            <li>
+                                <a href="#edittripbyID">Edit Trip by ID</a>
+                            </li>
+                            <li>
+                                <a href="#deletetripbyID">Delete Trip by ID</a>
+                            </li>
+                    </ul>
+                </div>
+                <hr />
+            </header>
+        </div>
+
+        <h2>Usage</h2>
+
+        <section id="login" class="row">
+            <h4>Login</h4>
+            <p><span>Endpoint URL: </span><code>/login</code> <span>Method: </span><code>GET</code></p>
+            <strong>Expected Input</strong>
+			<pre><code>{
+                    "email": "bar",
+                    "password":"bar"  
+                }</code></pre>
+            <strong>Example Output</strong>
+            <pre><code>{
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3RfbmFtZSI6IkFkbWluIiwibGFzdF9uYW1lIjoiQWRtaW4iLCJlbWFpbCI6IkFkbWluIiwicGhvbmUiOiI1NTUtNTU1LTU1NTUiLCJwYXNzd29yZCI6IkFkbWluIiwiaXNfYWRtaW4iOjEsImFpcnBvcnQiOiJEZW",
+                "is_admin": 1
+                }
+            </code></pre>
+        </section>
+        <hr />
+        <section id="getuserdata" class="row">
+            <h4>Get User Data</h4>
+            <p><span>Endpoint URL: </span><code>/users</code> <span>Method: </span><code>GET</code></p>
+            <strong>Expected Input</strong>
+					<pre><code>JWTtoken</code></pre>
+            <strong>Example Output</strong>
+            <pre><code>{
+                    "id": 1,
+                    "first_name": "Admin",
+                    "last_name": "Admin",
+                    "email": "Admin",
+                    "phone": "555-555-5555",
+                    "is_admin": 1,
+                    "airport": "Denver"
+                }
+            </code></pre>
+        </section>
+        <hr />
+        <section id="getuserbyid" class="row">
+            <h4>Get User By ID</h4>
+            <p><span>Endpoint URL: </span><code>/users/:id</code> <span>Method: </span><code>GET</code></p>
+            <strong>Example Output</strong>
+            <pre><code>
+                    {
+                        "id": 1,
+                        "first_name": "Admin",
+                        "last_name": "Admin",
+                        "email": "Admin",
+                        "phone": "555-555-5555",
+                        "is_admin": 1,
+                        "airport": "Denver"
+                    }
+            </code></pre>
+        </section>
+        <hr />
+        <section id="postnewuser" class="row">
+                <h4>Post New User</h4>
+                <p><span>Endpoint URL: </span><code>/users</code> <span>Method: </span><code>POST</code></p>
+                <strong>Expected Admin Input</strong>
+			    <pre><code>{
+                        "first_name": "Admin",
+                        "last_name": "Admin",
+                        "email": "Admin",
+                        "phone": "555-555-5555",
+                        "password": "Admin",
+                        "is_admin": 1,
+                        "airport": "Denver"  
+                }</code></pre>
+                <strong>Expected Non-Admin Input</strong>
+			    <pre><code>{
+                        "first_name": "bar",
+                        "last_name": "bar",
+                        "email": "bar",
+                        "phone": "555-555-5555",
+                        "password": "bar",
+                        "is_admin": 0,  
+                }</code></pre>
+                <strong>Example Output</strong>
+                <pre><code>
+                    {
+                        "id": 13
+                    }      
+                </code></pre>
+        </section>
+        <hr />
+        <section id="edituserbyID" class="row">
+                <h4>Edit User</h4>
+                <p><span>Endpoint URL: </span><code>/users/:id</code> <span>Method: </span><code>PUT</code></p>
+                <strong>Expected Admin Input</strong>
+			    <pre><code>{
+                        "first_name": "Admin",
+                        "last_name": "Admin",
+                        "email": "Admin",
+                        "phone": "555-555-5555",
+                        "password": "Admin",
+                        "is_admin": 1,
+                        "airport": "Denver"  
+                }</code></pre>
+                <strong>Expected Non-Admin Input</strong>
+			    <pre><code>{
+                        "first_name": "bar",
+                        "last_name": "bar",
+                        "email": "bar",
+                        "phone": "555-555-5555",
+                        "password": "bar",
+                        "is_admin": 0,  
+                }</code></pre>
+                <strong>Example Output</strong>
+                <pre><code> 
+                    {
+                        "token": "updated token"
+                    }     
+                </code></pre>
+        </section>
+        <hr />
+        <section id="deleteuserbyID" class="row">
+                <h4>Delete User</h4>
+                <p><span>Endpoint URL: </span><code>/users/:id</code> <span>Method: </span><code>DELETE</code></p>
+                <strong>Example Output</strong>
+                <pre><code> 
+                        1    
+                </code></pre>
+        </section>
+        <hr />
+        <section id="getlistoftrips" class="row">
+                <h4>Get Trips</h4>
+                <p><span>Endpoint URL: </span><code>/trips</code> <span>Method: </span><code>GET</code></p>
+                <strong>Example Admin Output</strong>
+                <pre><code>
+                        [
+                        {
+                            "id": 2,
+                            "user_id": 2,
+                            "airport": "Denver",
+                            "airline": "American",
+                            "departure_time": 1562870172471,
+                            "kids": 3,
+                            "is_arriving": 0
+                        },
+                        {
+                            "id": 4,
+                            "user_id": 4,
+                            "airport": "Denver",
+                            "airline": "American",
+                            "departure_time": 1576198383834,
+                            "kids": 8,
+                            "is_arriving": 0
+                        }
+                    ]      
+                </code></pre>
+                <strong>Example user Output</strong>
+                <pre><code>
+                        [
+                        {
+                            "id": 2,
+                            "user_id": 5,
+                            "airport": "Denver",
+                            "airline": "American",
+                            "departure_time": 1562870172471,
+                            "kids": 3,
+                            "is_arriving": 0
+                        },
+                        {
+                            "id": 5,
+                            "user_id": 5,
+                            "airport": "D.C.",
+                            "airline": "American",
+                            "departure_time": 1576198383834,
+                            "kids": 8,
+                            "is_arriving": 0
+                        }
+                    ]      
+                </code></pre>
+        </section>
+        <hr />
+        <section id="gettripbyID" class="row">
+                <h4>Get Trip By Id</h4>
+                <p><span>Endpoint URL: </span><code>/trips/:id</code> <span>Method: </span><code>GET</code></p>
+                <strong>Example Output</strong>
+                <pre><code>{
+                            "id": 2,
+                            "user_id": 5,
+                            "airport": "Denver",
+                            "airline": "American",
+                            "departure_time": 1562870172471,
+                            "kids": 3,
+                            "is_arriving": 0
+                            }      
+                </code></pre>
+        </section>
+        <hr />
+        <section id="postnewtrip" class="row">
+                <h4>Post New Trip</h4>
+                <p><span>Endpoint URL: </span><code>/trips</code> <span>Method: </span><code>POST</code></p>
+                <strong>Example Input</strong>
+                <pre><code>
+                        {
+                            "airport": "D.C.",
+                            "airline": "American",
+                            "departure_time": 1560728894419,
+                            "kids": 2,
+                            "is_arriving": 0
+                    }
+                </code></pre>
+                <strong>Example Output</strong>
+                <pre><code> 
+                        [
+                        tripId
+                    ]     
+                </code></pre>
+        </section>
+        <hr />
+        <section id="edittripbyID" class="row">
+                <h4>Edit Trip</h4>
+                <p><span>Endpoint URL: </span><code>/trips/:id</code> <span>Method: </span><code>PUT</code></p>
+                <strong>Example Input</strong>
+                <pre><code>
+                        {
+                            "airport": "D.C.",
+                            "airline": "American",
+                            "departure_time": 1560728894419,
+                            "kids": 2,
+                            "is_arriving": 1
+                    }
+                </code></pre>
+                <strong>Example Output</strong>
+                <pre><code> 
+                    1     
+                </code></pre>
+        </section>
+        <hr />
+        <section id="deletetripbyID" class="row">
+                <h4>Delete Trip</h4>
+                <p><span>Endpoint URL: </span><code>/trips/:id</code> <span>Method: </span><code>DELETE</code></p>
+                <strong>Example Output</strong>
+                <pre><code>
+                        1      
+                </code></pre>
+        </section>
+        <hr />
+    </div>
+    <footer style="background-color: #eee; padding-top: 30px; margin-top: 50px;">
+            <div class="container">
+                  <div class="row">
+                    <div class="one-half column">
+                          <ul style="list-style: none">
+                            <li>
+                                  <a href="https://github.com/kidsfly/kidsfly-backend" target="_blank" style="text-decoration: none;">
+                                <i class="fab fa-github"></i> <span>GitHub Repository</span>
+                                  </a>
+                            </li>
+                          </ul>
+                    </div>
+                <div class="one-half column">
+                      <p>This page was built using <a href="http://getskeleton.com/" target="_blank">S K E L E T O N.</a></p>
+                </div>
+              </div>
+          <hr />
+          <p style="text-align: center;"><small>&copy; 2019</small></p>
+        </div>
+      </footer>
+      <!-- End Document
+      –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    
+    
+</body>

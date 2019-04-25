@@ -61,7 +61,9 @@ export const put = async (req, res, next) => {
 
 export const post = async (req, res, next) => {
   try {
+    const { id } = req.token;
     const trip = req.body;
+    trip.user_id = id;
     const addedTrip = await makeTrip(trip);
     res.status(201).json(addedTrip);
   } catch (e) {

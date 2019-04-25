@@ -5,10 +5,13 @@ import verifyToken from "./middleware/verifyToken";
 import * as user from "./controllers/user";
 import * as trip from "./controllers/trip";
 import * as login from "./controllers/login";
+import path from "path";
+
 const server = express();
 setGeneraliddleware(server);
 
-server.get("/", (req, res) => res.send("Hello World!"));
+server.use(express.static(path.resolve(path.join(__dirname, "../public"))));
+server.get("/", (__, res) => res.sendFile("index.html"));
 
 //login
 server.route("/login").get(login.login);
