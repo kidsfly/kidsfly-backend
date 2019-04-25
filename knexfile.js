@@ -33,13 +33,12 @@ module.exports = {
   },
 
   production: {
-    client: "pg",
+    client: "sqlite3",
     connection: {
-      database: process.env.DATABASE_URL
+      filename: "./data/dev.sqlite3"
     },
     pool: {
-      min: 2,
-      max: 10
+      afterCreate: (conn, cb) => conn.run("PRAGMA foreign_keys = ON", cb)
     },
     migrations: {
       tableName: "knex_migrations",
@@ -48,6 +47,6 @@ module.exports = {
     seeds: {
       directory: "./data/seeds"
     },
-    ssl: true
+    useNullAsDefault: true
   }
 };
