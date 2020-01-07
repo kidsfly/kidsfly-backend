@@ -14,7 +14,7 @@ server.use(express.static(path.resolve(path.join(__dirname, "../public"))));
 server.get("/", (__, res) => res.sendFile("index.html"));
 
 //login
-server.route("/login").get(login.login);
+server.route("/login").post(login.login);
 
 server
   .route("/users")
